@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import GifSearch from './GifSearch';
 import GifList from './GifList';
 import GifListSummary from './GifListSummary';
-import { Container, Jumbotron } from 'reactstrap';
 import Header from './Header';
+import GifSearch from './GifSearch';
+import Body from './Body';
+import Footer from './Footer';
 
 export type Gif = {
   id: string,
@@ -38,12 +38,20 @@ export default class GifContainer extends Component<{}, State> {
   render() {
     const { gifs } = this.state;
     return <>
-      <Header onGifSelect={this.onGifAdd}></Header>
-      <GifList gifs={gifs} onGifDelete={this.onGifDelete}></GifList>
-      <GifListSummary gifs={gifs}></GifListSummary>
+      <Header>
+        <h1>My Fav Gifs</h1>
+        <GifSearch onGifSelect={this.onGifAdd}></GifSearch>
+      </Header>
+      <Body>
+        <GifList gifs={gifs} onGifDelete={this.onGifDelete}></GifList>
+      </Body>
+      <Footer>
+        <GifListSummary gifs={gifs} onAllGifsDelete={this.onAllGifsDelete}></GifListSummary>
+      </Footer>
     </>
   }
 }
 
 export type OnGifAdd = typeof GifContainer.prototype.onGifAdd;
 export type OnGifDelete = typeof GifContainer.prototype.onGifDelete;
+export type OnAllGifsDelete = typeof GifContainer.prototype.onAllGifsDelete;

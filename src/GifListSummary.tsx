@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Gif } from './GifContainer';
+import { Gif, OnAllGifsDelete } from './GifContainer';
+import { Button } from 'reactstrap';
 
 type Props = {
-  gifs: Gif[]
+  gifs: Gif[];
+  onAllGifsDelete: OnAllGifsDelete;
 }
 export default class GifListSummary extends Component<Props, {}> {
   render() {
-    return <div>Gif Count: {this.props.gifs.length}</div>
+    return <div>Gif Count: {this.props.gifs.length} <Button color="danger" onClick={this.props.onAllGifsDelete}>reset list</Button></div>
   }
 }

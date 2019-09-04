@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import { css } from 'emotion'
-import {
-  Card, Button, CardImg, CardTitle, CardText, CardColumns,
-  CardSubtitle, CardBody, Container, Jumbotron
-} from 'reactstrap';
-import GifContainer, { Gif, OnGifAdd } from './GifContainer';
-import GifSearch from './GifSearch';
-import GifListItem from './GifListItem';
+import { Jumbotron } from 'reactstrap';
 
-type Props = {
-  onGifSelect: OnGifAdd
-}
-
-export default class Header extends Component<Props, {}> {
+export default class Header extends Component<{}, {}> {
   render() {
     return (
       <Jumbotron className={headerStyle}>
-        <h1>My Fav Gifs</h1>
-        <GifSearch onGifSelect={this.props.onGifSelect}></GifSearch>
+        {this.props.children}
       </Jumbotron>
     );
   }
@@ -27,4 +16,9 @@ const headerStyle = css`
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 222px;
 `
