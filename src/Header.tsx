@@ -13,6 +13,7 @@ export default class Header extends Component<{}, {}> {
 }
 
 const headerStyle = css`
+  z-index: 20;
   display: flex;
   align-items: center;
   flex-direction: column;

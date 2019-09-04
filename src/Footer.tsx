@@ -13,6 +13,7 @@ export default class Footer extends Component<{}, {}> {
 }
 
 const footerStyle = css`
+  z-index: 20;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -21,4 +22,5 @@ const footerStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #e9ecef;
 `
