@@ -19,7 +19,7 @@ type State = {
 
 export default class GifContainer extends Component<{}, State> {
 
-  state = {
+  state: State = {
     gifs: []
   }
 
@@ -27,14 +27,23 @@ export default class GifContainer extends Component<{}, State> {
     this.setState({ gifs: [...this.state.gifs, gif] })
   }
 
+  onGifDelete = (gifId: Gif['id']) => {
+    this.setState({ gifs: this.state.gifs.filter(gif => { return gif.id !== gifId }) })
+  }
+
+  onAllGifsDelete = () => {
+    this.setState({ gifs: [] })
+  }
+
   render() {
     const { gifs } = this.state;
     return <>
       <Header onGifSelect={this.onGifAdd}></Header>
-      <GifList gifs={gifs}></GifList>
+      <GifList gifs={gifs} onGifDelete={this.onGifDelete}></GifList>
       <GifListSummary gifs={gifs}></GifListSummary>
     </>
   }
 }
 
 export type OnGifAdd = typeof GifContainer.prototype.onGifAdd;
+export type OnGifDelete = typeof GifContainer.prototype.onGifDelete;

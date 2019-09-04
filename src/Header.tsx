@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { css } from 'emotion'
 import {
   Card, Button, CardImg, CardTitle, CardText, CardColumns,
   CardSubtitle, CardBody, Container, Jumbotron
@@ -14,10 +15,16 @@ type Props = {
 export default class Header extends Component<Props, {}> {
   render() {
     return (
-      <Jumbotron>
+      <Jumbotron className={headerStyle}>
         <h1>My Fav Gifs</h1>
         <GifSearch onGifSelect={this.props.onGifSelect}></GifSearch>
       </Jumbotron>
     );
   }
 }
+
+const headerStyle = css`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
