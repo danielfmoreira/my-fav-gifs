@@ -4,8 +4,14 @@ import GifSearch from './GifSearch';
 import GifList from './GifList';
 import GifListSummary from './GifListSummary';
 
+export type Gif = {
+  id: number,
+  name: string,
+  url: string,
+}
+
 type State = {
-  gifs: any
+  gifs: Gif[],
 }
 
 export default class GifContainer extends Component<{}, State> {
