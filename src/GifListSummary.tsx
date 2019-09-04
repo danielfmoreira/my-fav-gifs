@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import { Gif } from './GifContainer';
 
-export default class GifListSummary extends Component<{}, {}> {
+type Props = {
+  gifs: Gif[]
+}
+export default class GifListSummary extends Component<Props, {}> {
   render() {
-    return <div>GifListSummary</div>
+    return <div>Gif Count: {this.props.gifs.length}</div>
   }
 }

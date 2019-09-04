@@ -10,7 +10,7 @@ export const searchGifs = async (searchText: string): Promise<Gif[]> => {
     return {
       id: apiGif.id,
       label: apiGif.title,
-      url: apiGif.url,
+      url: apiGif.images['fixed_width'].url,
     }
   })
 }

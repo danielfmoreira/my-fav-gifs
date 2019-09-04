@@ -3,6 +3,8 @@ import './App.css';
 import GifSearch from './GifSearch';
 import GifList from './GifList';
 import GifListSummary from './GifListSummary';
+import { Container, Jumbotron } from 'reactstrap';
+import Header from './Header';
 
 export type Gif = {
   id: string,
@@ -16,15 +18,23 @@ type State = {
 }
 
 export default class GifContainer extends Component<{}, State> {
+
+  state = {
+    gifs: []
+  }
+
   onGifAdd = (gif: Gif) => {
     this.setState({ gifs: [...this.state.gifs, gif] })
   }
 
   render() {
-    return <div>
-      <GifSearch onGifSelect={this.onGifAdd}></GifSearch>
-      <GifList></GifList>
-      <GifListSummary></GifListSummary>
-    </div>
+    const { gifs } = this.state;
+    return <>
+      <Header onGifSelect={this.onGifAdd}></Header>
+      <GifList gifs={gifs}></GifList>
+      <GifListSummary gifs={gifs}></GifListSummary>
+    </>
   }
 }
+
+export type OnGifAdd = typeof GifContainer.prototype.onGifAdd;
