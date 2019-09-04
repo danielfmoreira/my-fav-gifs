@@ -5,8 +5,9 @@ import GifList from './GifList';
 import GifListSummary from './GifListSummary';
 
 export type Gif = {
-  id: number,
-  name: string,
+  id: string,
+  // TODO: Rename to name
+  label: string,
   url: string,
 }
 
@@ -15,9 +16,13 @@ type State = {
 }
 
 export default class GifContainer extends Component<{}, State> {
+  onGifAdd = (gif: Gif) => {
+    this.setState({ gifs: [...this.state.gifs, gif] })
+  }
+
   render() {
     return <div>
-      <GifSearch></GifSearch>
+      <GifSearch onGifSelect={this.onGifAdd}></GifSearch>
       <GifList></GifList>
       <GifListSummary></GifListSummary>
     </div>
