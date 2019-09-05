@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { Card, CardImg, Button } from 'reactstrap';
 import { Gif, OnGifDelete } from './GifContainer';
 import { css } from 'emotion';
+import withConfirmationModal, { ConfirmationModalProps } from './withConfirmationModal';
 
 type Props = {
   gif: Gif,
   onGifDelete: OnGifDelete,
-}
-export default class GifListItem extends Component<Props, {}> {
+} & ConfirmationModalProps
+class GifListItem extends Component<Props, {}> {
   onGifDelete = () => {
-    this.props.onGifDelete(this.props.gif.id);
+    this.props.presentConfirmationModal!({
+      title: 'Delete Gif',
+      bodyText: 'You are about to delete this Gif. Are you sure?',
+      onConfirm: () => {
+        this.props.onGifDelete(this.props.gif.id);
+      }
+    })
   }
 
   render() {
@@ -20,6 +27,8 @@ export default class GifListItem extends Component<Props, {}> {
     </Card>
   }
 }
+
+export default withConfirmationModal(GifListItem);
 
 const cardStyle = css`
  &:hover button {

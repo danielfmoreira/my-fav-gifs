@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Card, Button, CardImg, CardTitle, CardText, CardColumns,
-  CardSubtitle, CardBody, Container
+  CardColumns, Container
 } from 'reactstrap';
 import { Gif, OnGifDelete } from './GifContainer';
-import GifSearch from './GifSearch';
 import GifListItem from './GifListItem';
 
 type Props = {
