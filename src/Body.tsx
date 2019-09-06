@@ -15,7 +15,7 @@ export default class Body extends Component<{}, {}> {
 const bodyStyle = css`
   z-index: 10;
   width: 100%;
-  margin-top: 222px;
+  margin-top: 237px;
   margin-bottom: 60px;
   width: 100%;
   overflow: scroll;

@@ -18,7 +18,7 @@ export type ConfirmationModalProps = {
   presentConfirmationModal?: (dialogConfig: ModalConfig) => void
 }
 
-export default function withConfirmationModal<P extends object>(
+export default function withConfirmationModal<P>(
   WrappedComponent: React.ComponentType<P>
 ) {
   return class ConfirmationModal extends React.Component<P, State> {
