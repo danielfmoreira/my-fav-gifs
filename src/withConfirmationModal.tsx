@@ -18,10 +18,10 @@ export type ConfirmationModalProps = {
   presentConfirmationModal?: (dialogConfig: ModalConfig) => void
 }
 
-const withConfirmationModal = <P extends object>(
+export default function withConfirmationModal<P extends object>(
   WrappedComponent: React.ComponentType<P>
-) => {
-  return class ConfirmationModal extends React.Component<P & ConfirmationModalProps, State> {
+) {
+  return class ConfirmationModal extends React.Component<P, State> {
 
     state: State = {
       isOpen: false,
@@ -65,5 +65,3 @@ const withConfirmationModal = <P extends object>(
     }
   };
 }
-
-export default withConfirmationModal;
