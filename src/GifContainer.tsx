@@ -6,21 +6,29 @@ import GifSearch from './GifSearch';
 import Body from './Body';
 import Footer from './Footer';
 
+export enum Theme {
+  light = 'light',
+  dark = 'dark'
+}
+export const ThemeContext = React.createContext(Theme.dark);
+
 export type Gif = {
   id: string,
-  // TODO: Rename to name
   label: string,
   url: string,
 }
 
 type State = {
   gifs: Gif[],
+  theme: Theme.light | Theme.dark
 }
 
 export default class GifContainer extends Component<{}, State> {
+  static contextType = ThemeContext;
 
   state: State = {
-    gifs: []
+    gifs: [],
+    theme: this.context,
   }
 
   onGifAdd = (gif: Gif) => {
@@ -35,10 +43,14 @@ export default class GifContainer extends Component<{}, State> {
     this.setState({ gifs: [] })
   }
 
+  changeTheme = () => {
+    this.setState({ theme: this.state.theme === Theme.light ? Theme.dark : Theme.light })
+  }
+
   render() {
     const { gifs } = this.state;
-    return <>
-      <Header>
+    return <ThemeContext.Provider value={this.state.theme}>
+      <Header changeTheme={this.changeTheme}>
         <h1>My Fav Gifs</h1>
         <GifSearch onGifSelect={this.onGifAdd}></GifSearch>
       </Header>
@@ -48,7 +60,7 @@ export default class GifContainer extends Component<{}, State> {
       <Footer>
         <GifListSummary gifs={gifs} onAllGifsDelete={this.onAllGifsDelete}></GifListSummary>
       </Footer>
-    </>
+    </ThemeContext.Provider>
   }
 }
 
