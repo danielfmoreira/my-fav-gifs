@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { Gif, OnGifAdd } from './GifContainer';
-import { searchGifs } from './giphyApi';
+import { Gif, OnGifAdd } from '../container/GifContainer';
+import { searchGifs } from '../giphyApi';
 import { css } from 'emotion';
 
 type state = {
@@ -21,7 +21,7 @@ export default class GifSearch extends Component<Props, state> {
   }
 
   renderMenuItemChildren = (gif: Gif) => {
-    return <span>{gif.label}</span>
+    return <span>{gif.name}</span>
   }
 
   onSearch = (searchText: string) => {
@@ -39,6 +39,8 @@ export default class GifSearch extends Component<Props, state> {
     const { isLoading, searchResults } = this.state;
     return <div className={searchStyle}>
       <AsyncTypeahead
+        id="gif-search"
+        labelKey="name"
         options={searchResults}
         isLoading={isLoading}
         onSearch={this.onSearch}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Gif, OnAllGifsDelete } from './GifContainer';
+import { Gif, OnAllGifsDelete } from '../container/GifContainer';
 import { Button } from 'reactstrap';
-import withConfirmationModal, { ConfirmationModalProps } from './withConfirmationModal';
+import withConfirmationModal, { ConfirmationModalProps } from '../withConfirmationModal';
 
 type Props = {
   gifs: Gif[];

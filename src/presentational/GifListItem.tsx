@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardImg, Button } from 'reactstrap';
-import { Gif, OnGifDelete } from './GifContainer';
+import { Gif, OnGifDelete } from '../container/GifContainer';
 import { css } from 'emotion';
-import withConfirmationModal, { ConfirmationModalProps } from './withConfirmationModal';
+import withConfirmationModal, { ConfirmationModalProps } from '../withConfirmationModal';
 
 type Props = {
   gif: Gif,
@@ -21,8 +21,8 @@ class GifListItem extends Component<Props, {}> {
 
   render() {
     const { gif } = this.props;
-    return <Card key={gif.id} className={cardStyle}>
-      <CardImg top width="100%" src={gif.url} alt={gif.label}></CardImg>
+    return <Card className={cardStyle}>
+      <CardImg top width="100%" src={gif.url} alt={gif.name}></CardImg>
       <Button onClick={this.onGifDelete} className={buttonStyle} color="danger">delete</Button>
     </Card>
   }

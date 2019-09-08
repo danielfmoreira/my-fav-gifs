@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { css } from 'emotion'
-import { Jumbotron } from 'reactstrap';
-import withTheme, { ThemeProps } from './withTheme';
-import { Theme } from './GifContainer';
+import { Theme, ThemeContext } from '../ThemeContext';
 
-class Footer extends Component<ThemeProps, {}> {
+export default class Footer extends Component<{}, {}> {
+  static contextType = ThemeContext;
+
   render() {
-    return (
-      <div className={footerStyle(this.props.theme!)}>
-        {this.props.children}
-      </div>
-    );
+    const theme = this.context;
+    return <div className={footerStyle(theme)}>
+      {this.props.children}
+    </div>
   }
 }
-
-export default withTheme(Footer);
 
 const footerStyle = (theme: Theme) => {
   return css`

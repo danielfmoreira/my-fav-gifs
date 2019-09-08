@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { css } from 'emotion';
-import withTheme, { ThemeProps } from './withTheme';
-import { Theme } from './GifContainer';
+import { ThemeContext, Theme } from '../ThemeContext';
 
-class Body extends Component<ThemeProps, {}> {
+export default class Body extends Component<{}, {}> {
+  static contextType = ThemeContext;
+
   render() {
-    return (
-      <div className={bodyStyle(this.props.theme!)}>
-        <Container>
-          {this.props.children}
-        </Container>
-      </div>
-    );
+    const theme = this.context;
+    return <div className={bodyStyle(theme)}>
+      <Container>
+        {this.props.children}
+      </Container>
+    </div>
   }
 }
 
-export default withTheme(Body);
-
 const bodyStyle = (theme: Theme) => {
   return css`
-    color: ${theme == Theme.light ? '#26292c' : 'white'};
+    color: ${theme === Theme.light ? '#26292c' : 'white'};
     background-color: ${theme === Theme.light ? 'white' : 'black'} !important;
     position: fixed;
     top: 0;

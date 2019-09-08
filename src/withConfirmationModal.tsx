@@ -21,7 +21,7 @@ export type ConfirmationModalProps = {
 export default function withConfirmationModal<P>(
   WrappedComponent: React.ComponentType<P>
 ) {
-  return class ConfirmationModal extends React.Component<P, State> {
+  return class ConfirmationModal extends Component<P, State> {
 
     state: State = {
       isOpen: false,

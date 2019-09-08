@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
-import GifList from './GifList';
-import GifListSummary from './GifListSummary';
-import Header from './Header';
-import GifSearch from './GifSearch';
-import Body from './Body';
-import Footer from './Footer';
-
-export enum Theme {
-  light = 'light',
-  dark = 'dark'
-}
-export const ThemeContext = React.createContext(Theme.dark);
+import GifList from '../presentational/GifList';
+import GifListSummary from '../presentational/GifListSummary';
+import Header from '../presentational/Header';
+import GifSearch from '../control/GifSearch';
+import Body from '../presentational/Body';
+import Footer from '../presentational/Footer';
+import { Theme, ThemeContext } from '../ThemeContext';
 
 export type Gif = {
   id: string,
-  label: string,
+  name: string,
   url: string,
 }
 
@@ -31,8 +26,8 @@ export default class GifContainer extends Component<{}, State> {
     theme: this.context,
   }
 
-  onGifAdd = (gif: Gif) => {
-    this.setState({ gifs: [...this.state.gifs, gif] })
+  onGifAdd = (newGif: Gif) => {
+    !this.state.gifs.find(gif => gif.id === newGif.id) && this.setState({ gifs: [...this.state.gifs, newGif] })
   }
 
   onGifDelete = (gifId: Gif['id']) => {
@@ -50,8 +45,7 @@ export default class GifContainer extends Component<{}, State> {
   render() {
     const { gifs } = this.state;
     return <ThemeContext.Provider value={this.state.theme}>
-      <Header changeTheme={this.changeTheme}>
-        <h1>My Fav Gifs</h1>
+      <Header title="My Fav Gifs" changeTheme={this.changeTheme}>
         <GifSearch onGifSelect={this.onGifAdd}></GifSearch>
       </Header>
       <Body>

@@ -1,15 +1,15 @@
-import { Gif } from "./GifContainer";
-const giphy = require('giphy-api')('4FXcRCZFZHO3MolGadfYQdIqxVEF6zfa');
+import { Gif } from "./container/GifContainer";
+const giphy = require('giphy-api')(process.env.GIPHY_API_KEY);
 
 type JSON = { [key: string]: any };
 
 export const searchGifs = async (searchText: string): Promise<Gif[]> => {
   const res = await giphy.search(searchText);
 
-  return res.data.map((apiGif: JSON) => {
+  return res.data && res.data.map((apiGif: JSON) => {
     return {
       id: apiGif.id,
-      label: apiGif.title,
+      name: apiGif.title,
       url: apiGif.images['fixed_width'].url,
     }
   })
